@@ -3,7 +3,6 @@
 
 
 Test this now
-hello
 with sub-folders
 Test
 updated code
