@@ -14,17 +14,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Check if source directory exists
-        shell: cmd
-        run: |
-          if exist "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer" (
-            echo "✅ Source path exists!"
-            dir "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer"
-          ) else (
-            echo "❌ ERROR: Source path does NOT exist!"
-            exit /b 1
-          )
-
       - name: Copy repository to target directory
         shell: cmd
         run: |
