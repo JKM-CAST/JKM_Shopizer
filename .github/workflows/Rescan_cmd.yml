@@ -10,7 +10,7 @@ on:
 
 jobs:
   rescan:
-    runs-on: self-hosted  # Use the self-hosted runner instead of windows-latest
+    runs-on: JKMLAP1  # Use the self-hosted runner instead of windows-latest
 
     steps:
       # Step 1: Checkout the repository to the default location
