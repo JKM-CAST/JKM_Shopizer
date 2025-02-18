@@ -13,8 +13,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          path: C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer
+
+      # Step 2: Move repository to the target directory
+      - name: Move repository to target directory
+        shell: cmd
+        run: |
+          xcopy "%GITHUB_WORKSPACE%" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
 
       - name: List directory contents of repository
         shell: cmd
