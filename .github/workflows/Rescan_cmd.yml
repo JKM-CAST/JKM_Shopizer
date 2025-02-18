@@ -14,15 +14,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Move repository to the target directory
+      - name: Debug Workspace Path
+        shell: cmd
+        run: |
+          echo GitHub Workspace Path: "${{ github.workspace }}"
+          dir "${{ github.workspace }}"
+
       - name: Move repository to target directory
         shell: cmd
         run: |
-          xcopy "%GITHUB_WORKSPACE%" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
+          xcopy "${{ github.workspace }}" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
 
-      - name: List directory contents of repository
+      - name: Verify Files in Target Directory
         shell: cmd
-        run: dir "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer"
+        run: |
+          dir "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer"
 
       - name: Set JAVA_HOME environment variable
         shell: cmd
