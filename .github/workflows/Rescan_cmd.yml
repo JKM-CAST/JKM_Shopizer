@@ -14,21 +14,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Debug Workspace Path
+      - name: Debug Check if source directory exists
         shell: cmd
         run: |
-          echo GitHub Workspace Path: "${{ github.workspace }}"
-          dir "${{ github.workspace }}"
+          if exist "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer" (
+            echo "✅ Source path exists!"
+            dir "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer"
+          ) else (
+            echo "❌ ERROR: Source path does NOT exist!"
+            exit /b 1
+          )
 
-      - name: Move repository to target directory
+      - name: Copy repository to target directory
         shell: cmd
         run: |
-          xcopy "${{ github.workspace }}" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
-
-      - name: Verify Files in Target Directory
-        shell: cmd
-        run: |
-          dir "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer"
+          xcopy "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
 
       - name: Set JAVA_HOME environment variable
         shell: cmd
