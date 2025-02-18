@@ -8,7 +8,7 @@ on:
 
 jobs:
   rescan:
-    runs-on: self-hosted
+    runs-on: [self-hosted, Windows, X64]
 
     steps:
       - name: Checkout repository
