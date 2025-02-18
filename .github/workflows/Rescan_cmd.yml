@@ -28,7 +28,7 @@ jobs:
       - name: Copy repository to target directory
         shell: cmd
         run: |
-          robocopy "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /COPY:DAT /R:3 /W:5
+          xcopy "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /COPY:DAT /R:3 /W:5
 
       - name: Set JAVA_HOME environment variable
         shell: cmd
