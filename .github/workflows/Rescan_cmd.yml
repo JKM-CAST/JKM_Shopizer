@@ -17,7 +17,7 @@ jobs:
       - name: Copy repository to target directory
         shell: cmd
         run: |
-          xcopy "C:\CAST\code_\JKM_Shopizer\JKM_Shopizer" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /COPY:DAT /R:3 /W:5
+          xcopy "%GITHUB_WORKSPACE%" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
 
       - name: Set JAVA_HOME environment variable
         shell: cmd
