@@ -1,44 +1,38 @@
-# GitHub workflow for CAST Imaging rescan with self-hosted action runner
-
 name: Rescan Application in CAST Imaging Console
 
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
-  workflow_dispatch:  # Manual trigger from Actions tab
+      - main
+  workflow_dispatch:
 
 jobs:
   rescan:
-    runs-on: JKMLAP1  # Use the self-hosted runner instead of windows-latest
+    runs-on: JKMLAP1
 
     steps:
-      # Step 1: Checkout the repository to the default location
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Copy repository to the target directory
       - name: Copy repository to target directory
         run: |
-          copy "C:\path\to\app_source_code" "C:\path\to\target_directory" /E /Y
+          xcopy "C:\GitHub_Runner\JKM_Shopizer" "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" /E /I /Y
 
-      # Step 3: List the contents of the checked-out repository in the target directory
       - name: List directory contents of repository
         shell: cmd
-        run: dir "C:\path\to\app_source_code"
+        run: dir "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer"
 
-      # Step 4: Set JAVA_HOME to local Java installation
       - name: Set JAVA_HOME environment variable
+        shell: cmd
         run: |
-          set JAVA_HOME="C:\Program Files\Java\jdk-11.0.15.1"  # Set the path to your local Java installation
+          set JAVA_HOME="C:\Program Files\Java\jdk-11.0.15.1"
           echo JAVA_HOME is set to %JAVA_HOME%
 
-      # Step 5: Verify Java Version
       - name: Verify Java Version
+        shell: cmd
         run: |
-          "%JAVA_HOME%\bin\java.exe" -version  # Check the local Java version
+          "%JAVA_HOME%\bin\java.exe" -version
 
-      # Step 6: Rescan the application using CAST AIP CLI
       - name: Rescan Application
         run: |
-          java -jar aip-console-tools-cli.jar add --apikey="<api_key_from_imaging_console>" -n "AppName" --server-url="http://localhost:8081" --no-clone -f "C:\path\to\app_source_code" --verbose=false --set-as-current=true --upload-application=true --process-imaging=true
+          java -jar aip-console-tools-cli.jar add --apikey="864h5khS.MbjJHcFQL13M71VdR70XT3KoPJguDW9u" -n "JKM_Shopizer" --server-url="http://localhost:8081" --no-clone -f "C:\Users\JKM\Documents\Cast_Software\G\SOURCES\JKM_Shopizer" --verbose=false --set-as-current=true --upload-application=true --process-imaging=true
