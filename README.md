@@ -5,5 +5,3 @@ with sub-folders
 updated code
 test code
 hello
-hello again
-hello
